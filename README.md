@@ -4,9 +4,9 @@ A Claude Code skill that audits and reviews all your installed agent skills. HR 
 
 **Find the skill issues before they find you.**
 
-> **Name credit:** [Josh Puckett](https://x.com/joshpuckett) — who immediately knew it had to be called `/skill-issue`
+> **Name:** [Josh Puckett](https://x.com/joshpuckett) — who immediately knew it had to be called `/skill-issue`
 >
-> **Concept credit:** [Benji Taylor](https://x.com/benjitaylor) — "I need a skill that reviews all the other skills, figures out which ones are performing, and fires the rest."
+> **Concept:** [Benji Taylor](https://x.com/benjitaylor) — "I need a skill that reviews all the other skills, figures out which ones are performing, and fires the rest."
 
 ## What It Does
 
