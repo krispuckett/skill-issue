@@ -23,6 +23,7 @@ const SKILL_DIRS = process.env.SKILL_DIRS
   : DEFAULT_SKILL_DIRS;
 const MEMORY_DIR = resolve(process.env.MEMORY_DIR || "./memory");
 const DAYS_BACK = parseInt(process.env.AUDIT_DAYS || "7", 10);
+const SKIP_HUB = process.env.SKIP_HUB === "1" || process.env.SKIP_HUB === "true";
 
 // --- Helpers ---
 
@@ -185,7 +186,7 @@ async function main() {
   }
 
   const allSkills = [...skillMap.values()].sort((a, b) => a.dirName.localeCompare(b.dirName));
-  const hubAvailable = commandExists("clawdhub");
+  const hubAvailable = !SKIP_HUB && commandExists("clawdhub");
 
   // Process each skill
   const results = [];
@@ -193,7 +194,7 @@ async function main() {
     const emoji = getNestedField(skill.meta, "clawdbot.emoji") || "";
     const health = checkHealth(skill.meta);
     const usage = await checkUsage(skill.dirName);
-    const hub = await checkHubVersion(skill.dirName);
+    const hub = hubAvailable ? await checkHubVersion(skill.dirName) : { available: false, version: "n/a" };
     const bins = (getNestedField(skill.meta, "clawdbot.requires.bins") || []).join(", ") || "—";
 
     // Determine recommendation
